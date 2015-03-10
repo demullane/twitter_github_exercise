@@ -1,4 +1,4 @@
-class Tweet
+class TweetFetcher
 
   def initialize
     @client =  Twitter::REST::Client.new do |config|
@@ -7,6 +7,10 @@ class Tweet
       config.access_token        = Rails.application.secrets.access_token
       config.access_token_secret = Rails.application.secrets.access_token_secret
     end
+  end
+
+  def search_twitter(username)
+    @client.user_timeline(username)
   end
 
 end

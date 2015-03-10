@@ -1,1 +1,15 @@
-<p>HELLO</p>
+<%= form_tag "/", {:method => 'get', :class => "form-horizontal"} do %>
+  <div class = "form-group">
+    <%= label_tag :username, "Search by Username", class: "control-label col-md-2" %>
+    <div class = "form-controls col-md-4">
+      <%= text_field_tag :username, nil, class: "form-control" %>
+    </div>
+    <div>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<% @tweet_finder.each do |tweet| %>
+  <%= tweet.text %><br />
+<% end %>
