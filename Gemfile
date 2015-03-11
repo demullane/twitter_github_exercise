@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'twitter'
+gem 'octokit', '~> 3.0'
 
 group :production do
   gem 'rails_12factor'

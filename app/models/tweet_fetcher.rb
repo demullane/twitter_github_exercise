@@ -13,4 +13,16 @@ class TweetFetcher
     @client.user_timeline(username)
   end
 
+  def post_tweet(message)
+    @client.update(message)
+  end
+
+  def danielle_follows
+    @client.home_timeline
+  end
+
+  def follow_user(follow_username)
+    @client.follow(follow_username)
+  end
+
 end
