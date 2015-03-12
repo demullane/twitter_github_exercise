@@ -5,8 +5,12 @@ class GithubFetcher
     @client = Octokit::Client.new(:access_token => Rails.application.secrets.access_token_github)
   end
 
-  def search_github(username)
+  def user_finder(username)
     @client.user(username)
+  end
+
+  def repos_finder(username)
+    @client.repos(username)
   end
 
 end

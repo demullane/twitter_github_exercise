@@ -34,8 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'font-awesome-sass'
+
 gem 'twitter'
+gem 'twitter-text'
 gem 'octokit', '~> 3.0'
+gem 'faraday'
 
 group :production do
   gem 'rails_12factor'
@@ -43,7 +47,7 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

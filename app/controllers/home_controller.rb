@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
 
   def index
+    @page_title = "Twitter API Exercise"
+    @page_header = "TWITTER API EXERCISE"
 
     @tweet_fetcher = TweetFetcher.new
     @home_feed = @tweet_fetcher.danielle_follows
@@ -22,16 +24,30 @@ class HomeController < ApplicationController
         render :index
       end
     end
-
   end
 
   def github
+    @page_title = "Github API Exercise"
+    @page_header = "GITHUB API EXERCISE"
+    @page_home = "/github"
+
     @github_fetcher = GithubFetcher.new
 
     unless params[:username].blank?
-      @github_finder = @github_fetcher.search_github(params[:username])
+      begin
+        @github_user_finder = @github_fetcher.user_finder(params[:username])
+        @github_repos_finder = @github_fetcher.repos_finder(params[:username])
+      rescue Octokit::NotFound => e
+        flash[:alert] = "User not found."
+        redirect_to "/github"
+      end
     end
   end
 
+  def data
+  end
+
+  def reddit
+  end
 
 end

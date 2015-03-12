@@ -1,8 +1,6 @@
-<h1>GitHub API Exercise</h1>
-
 <%= form_tag "/github", {:method => 'get', :class => "form-horizontal"} do %>
   <div class = "form-group">
-    <%= label_tag :username, "Search by Username", class: "control-label col-md-2" %>
+    <%= label_tag :username, "Repos by Username", class: "control-label col-md-2" %>
     <div class = "form-controls col-md-4">
       <%= text_field_tag :username, nil, class: "form-control" %>
     </div>
@@ -12,8 +10,20 @@
   </div>
 <% end %>
 
-<% if params[:username] %>
-  <%= @github_finder.each do |field| %>
-    <%= field %><br />
-  <% end %>
+<% if params[:username] && params[:username] != "" %>
+  <p>
+    <%= image_tag @github_user_finder[:avatar_url], :width => 100 %><br /><br />
+    User location is: <%= @github_user_finder[:location] %><br />
+    User was created: <%= @github_user_finder[:created_at] %><br />
+    User email: <%= @github_user_finder[:email] %><br />
+    User name: <%= @github_user_finder[:name] %><br />
+    User company: <%= @github_user_finder[:company] %><br /><br />
+  </p>
+  <table class = "table table-striped" id = "feed">
+    <% @github_repos_finder.each do |repo| %>
+      <tr>
+        <td><%= repo[:name] %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
