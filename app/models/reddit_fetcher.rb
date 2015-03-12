@@ -8,9 +8,9 @@ class RedditFetcher
     end
   end
 
-  def r_programming
+  def search_reddit(topic)
     response = @reddit_connection.get do |req|
-      req.url "/r/programming.json"
+      req.url("/r/" + topic + ".json")
       req.headers['Content-Type'] = 'application/json'
     end
     JSON.parse(response.body)
@@ -20,3 +20,5 @@ end
 
 # results["data"]["children"].map { |post| post["author"]}
 # results["data"]["children"].map { |child| ["data"]["title"]}
+
+#"/r/programming.json"

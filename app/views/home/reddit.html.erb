@@ -1,0 +1,21 @@
+<%= form_tag "/reddit", {:method => 'get', :class => "form-horizontal"} do %>
+  <div class = "form-group">
+    <%= label_tag :topic, "Search by Topic", class: "control-label col-md-2" %>
+    <div class = "form-controls col-md-4">
+      <%= text_field_tag :topic, nil, class: "form-control" %>
+    </div>
+    <div>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<% if params[:topic] %>
+  <table class = "table table-striped" id = "feed">
+    <% @reddit_topic_finder["data"]["children"].map do |child| %>
+      <tr>
+        <td><%= link_to child["data"]["title"] , child["data"]["url"] %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -48,6 +48,20 @@ class HomeController < ApplicationController
   end
 
   def reddit
+    @page_title = "Reddit API Exercise"
+    @page_header = "REDDIT API EXERCISE"
+    @page_home = "/reddit"
+
+    @reddit_fetcher = RedditFetcher.new
+
+    unless params[:topic].blank?
+      begin
+        @reddit_topic_finder = @reddit_fetcher.search_reddit(params[:topic])
+      rescue JSON::ParserError => e
+        flash[:alert] = "Topic not found."
+        redirect_to "/reddit"
+      end
+    end
   end
 
 end
